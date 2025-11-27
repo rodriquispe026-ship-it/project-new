@@ -1,1 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Mi Página – Funciones</title>
+<style>
+    body{
+        font-family: Arial, sans-serif;
+        background:#0d0d0d;
+        color:white;
+        margin:0;
+        padding:0;
+    }
+    header{
+        background:#1a1a1a;
+        padding:20px;
+        text-align:center;
+        font-size:28px;
+        font-weight:bold;
+    }
+    section{
+        padding:20px;
+        border-bottom:1px solid #333;
+    }
+    h2{
+        color:#4cc9f0;
+    }
+    button{
+        padding:10px 20px;
+        border:none;
+        border-radius:6px;
+        background:#4cc9f0;
+        color:black;
+        cursor:pointer;
+        font-weight:bold;
+    }
+</style>
+</head>
+<body>
 
+<header>Mi Página Web</header>
+
+<section>
+    <h2>⏰ Alarma</h2>
+    <p>Aquí podrás activar una alarma básica (solo visual, sin sonido real en la web).</p>
+    <input id="time" type="time">  
+    <button onclick="setAlarm()">Activar alarma</button>
+    <p id="alarmStatus"></p>
+</section>
+
+<section>
+    <h2>🔥 Racha</h2>
+    <p>Tu racha personal (días seguidos cumpliendo tareas).</p>
+    <button onclick="sumarRacha()">Sumar un día</button>
+    <p id="racha">Racha actual: 0 días</p>
+</section>
+
+<section>
+    <h2>👫 Con amigo(a)</h2>
+    <p>Pequeña sección para anotar algo con tu amigo/a.</p>
+    <input id="amigo" placeholder="Nombre de tu amigo(a)">
+    <button onclick="guardarAmigo()">Guardar</button>
+    <p id="amigoNombre"></p>
+</section>
+
+<section>
+    <h2>🧮 Alarma con problemas matemáticos</h2>
+    <p>Para desactivar la alarma debes resolver una suma simple.</p>
+    <button onclick="generarProblema()">Generar problema</button>
+    <p id="problema"></p>
+    <input id="respuesta" placeholder="Tu respuesta">
+    <button onclick="verificar()">Verificar</button>
+    <p id="resultado"></p>
+</section>
+
+<section>
+    <h2>❓ Preguntas</h2>
+    <textarea style="width:100%;height:80px;" placeholder="Escribe tu pregunta"></textarea>
+</section>
+
+<section>
+    <h2>💬 Comunicación</h2>
+    <p>Espacio para mensajes simples.</p>
+    <textarea style="width:100%;height:80px;" placeholder="Tu mensaje"></textarea>
+</section>
+
+<section>
+    <h2>⛪ Religión</h2>
+    <p>Notas o reflexiones personales (sin contenido sensible).</p>
+    <textarea style="width:100%;height:80px;" placeholder="Escribe aquí"></textarea>
+</section>
+
+<section>
+    <h2>🧠 DPCC</h2>
+    <p>Ideas, tareas o reflexiones del curso.</p>
+    <textarea style="width:100%;height:80px;" placeholder="Escribe aquí"></textarea>
+</section>
+
+<script>
+let racha = 0;
+
+function setAlarm(){
+    const time = document.getElementById("time").value;
+    document.getElementById("alarmStatus").innerText = 
+        "Alarma fijada para: " + time;
+}
+
+function sumarRacha(){
+    racha++;
+    document.getElementById("racha").innerText = 
+        "Racha actual: " + racha + " días";
+}
+
+function guardarAmigo(){
+    const nombre = document.getElementById("amigo").value;
+    document.getElementById("amigoNombre").innerText = 
+        "Amigo guardado: " + nombre;
+}
+
+let n1, n2;
+
+function generarProblema(){
+    n1 = Math.floor(Math.random()*10);
+    n2 = Math.floor(Math.random()*10);
+    document.getElementById("problema").innerText = 
+        "¿Cuánto es " + n1 + " + " + n2 + "?";
+}
+
+function verificar(){
+    const r = parseInt(document.getElementById("respuesta").value);
+    if(r === n1+n2){
+        document.getElementById("resultado").innerText = "Correcto. Alarma desactivada.";
+    } else {
+        document.getElementById("resultado").innerText = "Incorrecto, intenta otra vez.";
+    }
+}
+</script>
+
+</body>
+</html>
